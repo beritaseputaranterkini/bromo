@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita BROMO - Media Online Jawa Timur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #8B4513; /* Coklat Bromo */
+            --secondary: #FF6B35; /* Oranye matahari terbit */
+            --accent: #2E8B57; /* Hijau pegunungan */
+            --dark: #1A1A1A;
+            --light: #FFF8F0;
+            --gray: #666;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 5px;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+        }
+        
+        .logo img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+        
+        .logo-text h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #F5F0EB;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        
+        .weather-info i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .temp {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            font-weight: 600;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-menu a.active {
+            color: var(--secondary);
+        }
+        
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(139, 69, 19, 0.2), rgba(255, 107, 53, 0.1));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Breaking News */
+        .breaking-news {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .breaking-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .breaking-label {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+            padding-left: 100%;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0 80px;
+        }
+        
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title h2 i {
+            color: var(--secondary);
+        }
+        
+        .view-all {
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .view-all:hover {
+            color: var(--secondary);
+            gap: 12px;
+        }
+        
+        /* Featured News */
+        .featured-news {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .main-featured {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .main-featured:hover {
+            transform: translateY(-10px);
+        }
+        
+        .main-featured-image {
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .main-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .main-featured:hover .main-featured-image img {
+            transform: scale(1.05);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .main-featured-content {
+            padding: 30px;
+        }
+        
+        .main-featured-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+        
+        .main-featured-excerpt {
+            color: var(--gray);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .main-featured-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .featured-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Sidebar Featured */
+        .sidebar-featured {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .sidebar-featured-item {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-featured-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .sidebar-featured-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .sidebar-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .sidebar-featured-item:hover .sidebar-featured-image img {
+            transform: scale(1.05);
+        }
+        
+        .sidebar-featured-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-category {
+            display: inline-block;
+            background-color: #F5F0EB;
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+        
+        .sidebar-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+        
+        .sidebar-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Berita Grid */
+        .berita-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .berita-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .berita-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .berita-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .berita-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .berita-card:hover .berita-image img {
+            transform: scale(1.1);
+        }
+        
+        .berita-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .berita-content {
+            padding: 25px;
+        }
+        
+        .berita-title {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+        
+        .berita-excerpt {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .berita-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        /* Pariwisata Section */
+        .pariwisata-section {
+            margin-bottom: 60px;
+        }
+        
+        .pariwisata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .pariwisata-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .pariwisata-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pariwisata-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .pariwisata-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .pariwisata-card:hover .pariwisata-image img {
+            transform: scale(1.1);
+        }
+        
+        .pariwisata-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            color: white;
+        }
+        
+        .pariwisata-title {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+        
+        /* Video Section */
+        .video-section {
+            margin-bottom: 60px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .video-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-thumbnail {
+            height: 180px;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+        
+        .play-btn {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .play-btn:hover {
+            background-color: #e55a2b;
+            transform: scale(1.1);
+        }
+        
+        .video-content {
+            padding: 20px;
+        }
+        
+        .video-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .video-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--dark), #2a2a2a);
+            color: white;
+            padding: 60px 0 20px;
+            border-radius: 30px 30px 0 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #D1D5DB;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .contact-item i {
+            color: var(--secondary);
+            margin-top: 3px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo-img {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+        
+        .footer-logo-img img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-logo-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            border: none;
+            padding: 0;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #9CA3AF;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .featured-news {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-featured-image {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .berita-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .pariwisata-grid, .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                border-radius: 0 0 15px 15px;
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .weather-info {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .main-featured-title {
+                font-size: 1.7rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .main-featured-image {
+                height: 250px;
+            }
+            
+            .berita-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pariwisata-grid, .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .contact-item {
+                justify-content: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3097/3097140.png" alt="Logo BROMO">
+                    </div>
+                    <div class="logo-text">
+                        <h1>BERITA BROMO</h1>
+                        <p>Media Online Jawa Timur Terpercaya</p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="weather-info">
+                        <i class="fas fa-sun"></i>
+                        <span class="temp">28°C</span>
+                        <span>Malang, Jawa Timur</span>
+                    </div>
+                    
+                    <div class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-bottom">
+                <nav class="nav-menu" id="navMenu">
+                    <ul>
+                        <li><a href="#berita" class="active">Berita Utama</a></li>
+                        <li><a href="#jatim">Jawa Timur</a></li>
+                        <li><a href="#pariwisata">Pariwisata</a></li>
+                        <li><a href="#budaya">Budaya</a></li>
+                        <li><a href="#ekonomi">Ekonomi</a></li>
+                        <li><a href="#olahraga">Olahraga</a></li>
+                        <li><a href="#video">Video</a></li>
+                        <li><a href="#tentang">Tentang</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Suara Masyarakat Jawa Timur</h2>
+                <p>Dapatkan berita terkini, informasi terpercaya, dan perkembangan terbaru seputar Jawa Timur. Dari Gunung Bromo hingga pesisir Pantai Sanur, kami menyajikan cerita-cerita terbaik untuk Anda.</p>
+                <div class="hero-buttons">
+                    <a href="#berita" class="btn btn-primary">
+                        <i class="fas fa-newspaper"></i> Baca Berita Terbaru
+                    </a>
+                    <a href="#video" class="btn btn-outline">
+                        <i class="fas fa-play-circle"></i> Tonton Video
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breaking News -->
+    <div class="container">
+        <div class="breaking-news">
+            <div class="breaking-content">
+                <div class="breaking-label">
+                    <i class="fas fa-bolt"></i> BERITA TERKINI
+                </div>
+                <div class="marquee-container">
+                    <div class="marquee">
+                        <strong>GUNUNG BROMO:</strong> Status waspada ditingkatkan setelah peningkatan aktivitas seismik - Festival Jazz Gunung Bromo 2024 akan digelar bulan depan - Harga cabai di Malang turun 30% setelah panen raya - Tim sepak bola Arema FC raih kemenangan 2-1 atas Persebaya.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Featured News -->
+            <section id="berita">
+                <div class="featured-news">
+                    <!-- Main Featured -->
+                    <div class="main-featured">
+                        <div class="main-featured-image">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Gunung Bromo">
+                            <div class="featured-badge">UTAMA</div>
+                        </div>
+                        <div class="main-featured-content">
+                            <h2 class="main-featured-title">Status Gunung Bromo Ditingkatkan Menjadi Waspada</h2>
+                            <p class="main-featured-excerpt">PVMBG meningkatkan status Gunung Bromo dari level I (normal) ke level II (waspada) setelah mencatat peningkatan aktivitas seismik dalam sepekan terakhir. Wisatawan diimbau untuk tetap waspada dan mengikuti arahan petugas.</p>
+                            <div class="main-featured-meta">
+                                <div class="featured-author">
+                                    <div class="author-avatar">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Reporter">
+                                    </div>
+                                    <div>
+                                        <div class="author-name">Rizki Maulana</div>
+                                        <div class="post-date">14 Februari 2024 • 08:45 WIB</div>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar Featured -->
+                    <div class="sidebar-featured">
+                        <div class="sidebar-featured-item">
+                            <div class="sidebar-featured-image">
+                                <img src="https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Festival Jazz Bromo">
+                            </div>
+                            <div class="sidebar-featured-content">
+                                <span class="sidebar-category">BUDAYA</span>
+                                <h3 class="sidebar-title">Festival Jazz Gunung Bromo 2024 Akan Hadirkan Musisi Internasional</h3>
+                                <div class="sidebar-meta">
+                                    <span><i class="far fa-calendar"></i> 13 Feb 2024</span>
+                                    <span><i class="far fa-eye"></i> 2.4k</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sidebar-featured-item">
+                            <div class="sidebar-featured-image">
+                                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pertanian Jawa Timur">
+                            </div>
+                            <div class="sidebar-featured-content">
+                                <span class="sidebar-category">EKONOMI</span>
+                                <h3 class="sidebar-title">Ekspor Produk Pertanian Jatim Tumbuh 15% di Kuartal I 2024</h3>
+                                <div class="sidebar-meta">
+                                    <span><i class="far fa-calendar"></i> 12 Feb 2024</span>
+                                    <span><i class="far fa-eye"></i> 1.8k</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sidebar-featured-item">
+                            <div class="sidebar-featured-image">
+                                <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Olahraga Jatim">
+                            </div>
+                            <div class="sidebar-featured-content">
+                                <span class="sidebar-category">OLAHRAGA</span>
+                                <h3 class="sidebar-title">Arema FC Kalahkan Persebaya 2-1 dalam Derby Jatim</h3>
+                                <div class="sidebar-meta">
+                                    <span><i class="far fa-calendar"></i> 11 Feb 2024</span>
+                                    <span><i class="far fa-eye"></i> 3.1k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Berita Grid -->
+            <section id="jatim">
+                <div class="section-title">
+                    <h2><i class="fas fa-map-marked-alt"></i> Berita Jawa Timur</h2>
+                    <a href="#" class="view-all">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="berita-grid">
+                    <!-- Berita 1 -->
+                    <article class="berita-card">
+                        <div class="berita-image">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pembangunan Jatim">
+                            <div class="berita-category">INFRASTRUKTUR</div>
+                        </div>
+                        <div class="berita-content">
+                            <h3 class="berita-title">Proyek Jalan Tol Malang-Surabaya Capai 80% Penyelesaian</h3>
+                            <p class="berita-excerpt">Proyek jalan tol yang menghubungkan Malang dan Surabaya dilaporkan telah mencapai 80% penyelesaian. Diharapkan dapat mengurangi waktu tempuh antara kedua kota dari 3 jam menjadi 1,5 jam.</p>
+                            <div class="berita-meta">
+                                <span><i class="far fa-calendar"></i> 14 Feb 2024</span>
+                                <span><i class="far fa-eye"></i> 1.5k</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Berita 2 -->
+                    <article class="berita-card">
+                        <div class="berita-image">
+                            <img src="https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pendidikan Jatim">
+                            <div class="berita-category">PENDIDIKAN</div>
+                        </div>
+                        <div class="berita-content">
+                            <h3 class="berita-title">Jatim Raih Peringkat Tertinggi Nasional dalam Olimpiade Sains 2024</h3>
+                            <p class="berita-excerpt">Pelajar Jawa Timur meraih 15 medali emas dalam Olimpiade Sains Nasional 2024, menempatkan Jatim sebagai peraih medali terbanyak se-Indonesia.</p>
+                            <div class="berita-meta">
+                                <span><i class="far fa-calendar"></i> 13 Feb 2024</span>
+                                <span><i class="far fa-eye"></i> 2.2k</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Berita 3 -->
+                    <article class="berita-card">
+                        <div class="berita-image">
+                            <img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Politik Jatim">
+                            <div class="berita-category">POLITIK</div>
+                        </div>
+                        <div class="berita-content">
+                            <h3 class="berita-title">Gubernur Jatim Resmikan Program "Jatim Sehat" di 10 Kabupaten</h3>
+                            <p class="berita-excerpt">Program kesehatan masyarakat "Jatim Sehat" akan menjangkau 10 kabupaten prioritas dengan fokus pada peningkatan layanan kesehatan dasar dan pencegahan stunting.</p>
+                            <div class="berita-meta">
+                                <span><i class="far fa-calendar"></i> 12 Feb 2024</span>
+                                <span><i class="far fa-eye"></i> 1.7k</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- Pariwisata Section -->
+            <section id="pariwisata" class="pariwisata-section">
+                <div class="section-title">
+                    <h2><i class="fas fa-mountain"></i> Pariwisata Jawa Timur</h2>
+                    <a href="#" class="view-all">Semua Destinasi <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="pariwisata-grid">
+                    <!-- Pariwisata 1 -->
+                    <div class="pariwisata-card">
+                        <div class="pariwisata-image">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gunung Bromo">
+                        </div>
+                        <div class="pariwisata-overlay">
+                            <h3 class="pariwisata-title">Gunung Bromo</h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Pariwisata 2 -->
+                    <div class="pariwisata-card">
+                        <div class="pariwisata-image">
+                            <img src="https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kawah Ijen">
+                        </div>
+                        <div class="pariwisata-overlay">
+                            <h3 class="pariwisata-title">Kawah Ijen</h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Pariwisata 3 -->
+                    <div class="pariwisata-card">
+                        <div class="pariwisata-image">
+                            <img src="https://images.unsplash.com/photo-1516054575922-f0b8ee922fdc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pantai Balekambang">
+                        </div>
+                        <div class="pariwisata-overlay">
+                            <h3 class="pariwisata-title">Pantai Balekambang</h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Pariwisata 4 -->
+                    <div class="pariwisata-card">
+                        <div class="pariwisata-image">
+                            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Candi Penataran">
+                        </div>
+                        <div class="pariwisata-overlay">
+                            <h3 class="pariwisata-title">Candi Penataran</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Video Section -->
+            <section id="video" class="video-section">
+                <div class="section-title">
+                    <h2><i class="fas fa-video"></i> Video Terbaru</h2>
+                    <a href="#" class="view-all">Semua Video <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="video-grid">
+                    <!-- Video 1 -->
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gunung Bromo">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3 class="video-title">Matahari Terbit di Gunung Bromo</h3>
+                            <div class="video-meta">
+                                <span><i class="far fa-clock"></i> 5:32</span>
+                                <span><i class="far fa-calendar"></i> 13 Feb 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 2 -->
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Festival Jazz">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3 class="video-title">Persiapan Festival Jazz Gunung Bromo 2024</h3>
+                            <div class="video-meta">
+                                <span><i class="far fa-clock"></i> 8:15</span>
+                                <span><i class="far fa-calendar"></i> 12 Feb 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 3 -->
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kuliner Jatim">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3 class="video-title">Jelajah Kuliner Khas Jawa Timur</h3>
+                            <div class="video-meta">
+                                <span><i class="far fa-clock"></i> 12:45</span>
+                                <span><i class="far fa-calendar"></i> 11 Feb 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="tentang">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Tentang BROMO -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-img">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3097/3097140.png" alt="Logo BROMO">
+                        </div>
+                        <div class="footer-logo-text">
+                            <h3>BERITA BROMO</h3>
+                            <p>Media Online Jawa Timur</p>
+                        </div>
+                    </div>
+                    <p>Berita BROMO adalah portal berita online yang fokus menyajikan informasi terkini seputar Jawa Timur. Kami berkomitmen menyampaikan berita yang akurat, berimbang, dan bermanfaat bagi masyarakat Jawa Timur.</p>
+                    <p>BROMO merupakan singkatan dari Berita Online Media Optima, dengan filosofi setinggi dan seindah Gunung Bromo.</p>
+                </div>
+                
+                <!-- Kontak -->
+                <div class="footer-section">
+                    <h3>Kontak Kami</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p>Jl. Bromo No. 15, Malang</p>
+                                <p>Jawa Timur 65111</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p>(0341) 123456</p>
+                                <p>Senin - Jumat, 08:00 - 17:00 WIB</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p>redaksi@beritabromo.id</p>
+                                <p>iklan@beritabromo.id</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Link Cepat -->
+                <div class="footer-section">
+                    <h3>Link Cepat</h3>
+                    <a href="#berita">Berita Utama</a>
+                    <a href="#jatim">Berita Jawa Timur</a>
+                    <a href="#pariwisata">Pariwisata</a>
+                    <a href="#budaya">Budaya & Tradisi</a>
+                    <a href="#ekonomi">Ekonomi & Bisnis</a>
+                    <a href="#olahraga">Olahraga</a>
+                    <a href="#video">Video</a>
+                    <a href="#tentang">Tentang Kami</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Berita BROMO. Semua Hak Dilindungi.</p>
+                <p>Media Online Terpercaya Jawa Timur | Terdaftar di Dewan Pers No. 01234/DP/2024</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                
+                // Update active menu
+                navLinks.forEach(item => item.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+        
+        // Play button functionality for videos
+        const playBtns = document.querySelectorAll('.play-btn');
+        playBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const videoCard = this.closest('.video-card');
+                const videoTitle = videoCard.querySelector('.video-title').textContent;
+                
+                // Create video modal
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.9);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2000;
+                    padding: 20px;
+                `;
+                
+                modal.innerHTML = `
+                    <div style="max-width: 800px; width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; color: white;">
+                            <h3 style="margin: 0;">${videoTitle}</h3>
+                            <button id="closeModal" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, var(--primary), var(--secondary)); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 15px;"></i>
+                                <p>Video "${videoTitle}" akan diputar</p>
+                                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">(Demo - dalam implementasi nyata, video akan diputar di sini)</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Close modal functionality
+                const closeModal = document.getElementById('closeModal');
+                closeModal.addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+                
+                // Close modal when clicking outside
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        document.body.removeChild(modal);
+                    }
+                });
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                // Don't prevent default for view-all links
+                if (this.classList.contains('view-all')) return;
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add hover effect to cards
+        const cards = document.querySelectorAll('.berita-card, .pariwisata-card, .video-card, .main-featured, .sidebar-featured-item');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = this.classList.contains('berita-card') || this.classList.contains('main-featured')
+                    ? 'translateY(-10px)' 
+                    : this.classList.contains('pariwisata-card')
+                    ? 'translateY(-10px)'
+                    : 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Simulate weather update
+        function updateWeather() {
+            const tempElement = document.querySelector('.temp');
+            const weatherIcons = ['fa-sun', 'fa-cloud-sun', 'fa-cloud', 'fa-cloud-rain'];
+            const weatherIcon = document.querySelector('.weather-info i');
+            
+            // Simulate random temperature between 26-32
+            const randomTemp = Math.floor(Math.random() * 7) + 26;
+            tempElement.textContent = `${randomTemp}°C`;
+            
+            // Change icon randomly
+            const randomIcon = weatherIcons[Math.floor(Math.random() * weatherIcons.length)];
+            weatherIcon.className = `fas ${randomIcon}`;
+        }
+        
+        // Update weather every 30 seconds (for demo purposes)
+        setInterval(updateWeather, 30000);
+    </script>
+</body>
+</html>
